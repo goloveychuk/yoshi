@@ -113,7 +113,7 @@
     "raw-loader": "1.0.0",
     "react-dev-utils": "7.0.3",
     "react-hot-loader": "4.11.1",
-    "rtlcss-webpack-plugin": "4.0.0",
+    "rtlcss-webpack-plugin": "4.0.2",
     "ruby-haml-loader": "1.0.0",
     "semver": "5.6.0",
     "sockjs": "0.3.19",

@@ -1,3 +1,5 @@
+require('source-map-support/register');
+
 const prog = require('commander');
 const runCLI = require('../src/cli');
 const { version } = require('../package');
@@ -108,13 +110,14 @@ if (config.experimentalMonorepo) {
       "Allow app-server debugging, process won't start until debugger will be attached",
     )
     .option('--ssl', 'Serve the app bundle on https')
+    .option('--https', 'Serve the app bundle on https')
     .action(() => runCLI('start'));
 }
 
 if (config.experimentalMonorepo) {
   prog
     .command('release')
-    .description('Exprimental way to publish a Lerna monorepo in CI')
+    .description('Experimental way to publish a Lerna monorepo in CI')
     .option('--minor', 'bump a minor version instead of a patch')
     .action(() => runCLI('release-monorepo'));
 } else {

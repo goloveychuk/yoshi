@@ -3,6 +3,7 @@ const chalk = require('chalk');
 const globby = require('globby');
 const { envs, supportedEnvs, withLatestJSDom } = require('./constants');
 const globs = require('yoshi-config/globs');
+const loadJestYoshiConfig = require('yoshi-config/jest');
 
 const modulePathIgnorePatterns = ['<rootDir>/dist/', '<rootDir>/target/'];
 
@@ -14,7 +15,17 @@ if (envs && envs.some(env => !supportedEnvs.includes(env))) {
   process.exit(1);
 }
 
-module.exports = {
+const jestYoshiConfig = loadJestYoshiConfig();
+
+const specOverrides =
+  jestYoshiConfig.overrides && jestYoshiConfig.overrides.spec;
+
+const e2eOverrides = jestYoshiConfig.overrides && jestYoshiConfig.overrides.e2e;
+
+const supportedOverrideKeys = ['globals'];
+
+const config = {
+  collectCoverage: true,
   globalSetup: require.resolve('jest-environment-yoshi-puppeteer/globalSetup'),
   globalTeardown: require.resolve(
     'jest-environment-yoshi-puppeteer/globalTeardown',
@@ -95,7 +106,6 @@ module.exports = {
 
         return {
           ...project,
-
           modulePathIgnorePatterns,
 
           transformIgnorePatterns: [
@@ -132,3 +142,21 @@ module.exports = {
     },
   ],
 };
+
+const override = (overrides, keyToOverride) => {
+  if (overrides) {
+    supportedOverrideKeys.forEach(key => {
+      if (overrides.hasOwnProperty(key)) {
+        const projectToOverride = config.projects.find(
+          proj => proj.displayName === keyToOverride,
+        );
+        projectToOverride[key] = overrides[key];
+        delete overrides[key];
+      }
+    });
+  }
+};
+override(specOverrides, 'spec');
+override(e2eOverrides, 'e2e');
+
+module.exports = config;

@@ -166,7 +166,7 @@ const overrideJestConfig = (overrides, envToOverride) => {
             'These options in your jest-yoshi.config.js file ' +
             'are not currently supported by Yoshi:\n\n' +
             unsupportedKeys
-              .map(key => chalk.bold('  \u2022 ' + key))
+              .map(key => chalk.bold('  \u2022 ' + envToOverride + '.' + key))
               .join('\n'),
         ),
       );

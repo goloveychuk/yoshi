@@ -25,7 +25,6 @@ const e2eOverrides = jestYoshiConfig.overrides && jestYoshiConfig.overrides.e2e;
 const supportedOverrideKeys = ['globals'];
 
 const config = {
-  collectCoverage: true,
   globalSetup: require.resolve('jest-environment-yoshi-puppeteer/globalSetup'),
   globalTeardown: require.resolve(
     'jest-environment-yoshi-puppeteer/globalTeardown',

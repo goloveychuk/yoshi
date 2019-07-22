@@ -143,20 +143,38 @@ const config = {
   ],
 };
 
-const override = (overrides, keyToOverride) => {
+const overrideJestConfig = (overrides, envToOverride) => {
   if (overrides) {
     supportedOverrideKeys.forEach(key => {
       if (overrides.hasOwnProperty(key)) {
         const projectToOverride = config.projects.find(
-          proj => proj.displayName === keyToOverride,
+          proj => proj.displayName === envToOverride,
         );
         projectToOverride[key] = overrides[key];
         delete overrides[key];
       }
     });
+    const unsupportedKeys = Object.keys(overrides);
+    if (unsupportedKeys.length) {
+      console.error(
+        chalk.red(
+          '\nYoshi only supports overriding ' +
+            'these Jest options:\n\n' +
+            supportedOverrideKeys
+              .map(key => chalk.bold('  \u2022 ' + key))
+              .join('\n') +
+            '.\n\n' +
+            'These options in your jest-yoshi.config.js file ' +
+            'are not currently supported by Yoshi:\n\n' +
+            unsupportedKeys
+              .map(key => chalk.bold('  \u2022 ' + key))
+              .join('\n'),
+        ),
+      );
+    }
   }
 };
-override(specOverrides, 'spec');
-override(e2eOverrides, 'e2e');
+overrideJestConfig(specOverrides, 'spec');
+overrideJestConfig(e2eOverrides, 'e2e');
 
 module.exports = config;

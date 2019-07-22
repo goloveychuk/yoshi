@@ -25,4 +25,8 @@ export type Config = {
     command: string;
     port: number;
   };
+  overrides?: {
+    spec?: any;
+    e2e?: any;
+  };
 };

@@ -10,6 +10,7 @@ const validConfig: Required<Config> = {
     command: 'npm run server',
     port: 3000,
   },
+  overrides: { spec: {}, e2e: {} },
 };
 
 export default validConfig;

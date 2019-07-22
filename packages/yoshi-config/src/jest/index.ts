@@ -27,7 +27,7 @@ export default (): Config => {
 
   validate(config, {
     exampleConfig: validConfig,
-    recursiveBlacklist: ['puppeteer'],
+    recursiveBlacklist: ['puppeteer', 'overrides.spec', 'overrides.e2e'],
   });
 
   return config;

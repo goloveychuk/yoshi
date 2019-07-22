@@ -3,4 +3,11 @@ module.exports = {
     command: 'node index.js',
     port: 3100,
   },
+  overrides: {
+    e2e: {
+      globals: {
+        foo: 'bar',
+      },
+    },
+  },
 };

@@ -55,11 +55,13 @@ module.exports = function(api, opts = {}) {
       // Enable stage 2 decorators.
       [
         requireDefault('@babel/plugin-proposal-decorators'),
-        {
-          // Enable export after decorator syntax. It's also a part of the spec and tc39 is not made a decision about it.
-          // Read more https://github.com/tc39/proposal-decorators/issues/69
-          decoratorsBeforeExport: true,
-        },
+        options.useLegacyDecorators ? 
+          { legacy: true } : 
+          {
+            // Enable export after decorator syntax. It's also a part of the spec and tc39 is not made a decision about it.
+            // Read more https://github.com/tc39/proposal-decorators/issues/69
+            decoratorsBeforeExport: true,
+          },
       ],
       [
         // Allow the usage of class properties.

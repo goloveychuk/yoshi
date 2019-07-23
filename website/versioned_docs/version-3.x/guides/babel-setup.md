@@ -27,6 +27,7 @@ Configure `yoshi` to use its built-in preset by adding the following to your `pa
   By default, if no `targets` provided, it will compile for **all** targets (`node` on test environment).
 - `modules` (defaults to `"commonjs"` in `test` environment and to false in `production` and `development` ): Enable transformation of ES6 module syntax to another module type. [Read more](https://babeljs.io/docs/plugins/preset-env/#modules). Set `false` to ignore module transforms.
 - `ignoreReact` (default: `false`): Ignores plugins and presets related to React.
+- `useLegacyDecorators` (default: `false`): Sets `{legacy: true}` for `@babel/plugin-proposal-decorators`.
 - `debug` (default: `false`): Outputs the targets/plugins used according to specified targets. [Read more](https://babeljs.io/docs/plugins/preset-env/#debug).
 
 ## Modes

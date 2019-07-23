@@ -182,3 +182,5 @@ overrideJestConfig(specOverrides, 'spec');
 overrideJestConfig(e2eOverrides, 'e2e');
 
 module.exports = config;
+
+module.exports.overrideJestConfig = overrideJestConfig;

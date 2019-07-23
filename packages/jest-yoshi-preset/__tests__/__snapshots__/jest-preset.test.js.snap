@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should log in case of non whitelist keys 1`] = `
+"[31m[39m
+[31mYoshi only supports overriding these Jest options:[39m
+[31m[39m
+[31m[1m  • globals[22m.[39m
+[31m[39m
+[31mThese options in your jest-yoshi.config.js file are not currently supported by Yoshi:[39m
+[31m[39m
+[31m[1m  • e2e.globals1[22m[39m"
+`;

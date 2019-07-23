@@ -22,11 +22,6 @@ if (envs && envs.some(env => !supportedEnvs.includes(env))) {
 
 const jestYoshiConfig = loadJestYoshiConfig();
 
-const specOverrides =
-  jestYoshiConfig.overrides && jestYoshiConfig.overrides.spec;
-
-const e2eOverrides = jestYoshiConfig.overrides && jestYoshiConfig.overrides.e2e;
-
 const supportedOverrideKeys = ['globals'];
 
 const config = {
@@ -178,8 +173,8 @@ const overrideJestConfig = (overrides, envToOverride) => {
     }
   }
 };
-overrideJestConfig(specOverrides, 'spec');
-overrideJestConfig(e2eOverrides, 'e2e');
+overrideJestConfig(jestYoshiConfig.specOptions, 'spec');
+overrideJestConfig(jestYoshiConfig.e2eOptions, 'e2e');
 
 module.exports = config;
 

@@ -9,5 +9,10 @@ module.exports = {
         foo: 'bar',
       },
     },
+    spec: {
+      globals: {
+        foo: 'bar',
+      },
+    },
   },
 };
